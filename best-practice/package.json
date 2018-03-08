@@ -1,0 +1,16 @@
+{
+  "name": "best-practice",
+  "version": "1.0.0",
+  "description": "demo",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf node_modules node_modules_* && npm i --production"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^3.1.0",
+    "fc-koa2-helper": "^1.0.0",
+    "path-to-regexp": "^2.1.0"
+  }
+}

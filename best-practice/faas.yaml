@@ -1,0 +1,78 @@
+
+role:
+  name: 'AliyunApiGatewayAccessingFCRole'
+
+function-compute:
+  region: 'cn-shanghai'
+  services:
+    - name: 'demo'
+      description: 'demo'
+      functions:
+        - name: 'users'
+          description: 'users'
+          runtime: nodejs8
+          timeout: 30
+          handler: users.handler
+          codes:
+            - 'users.js'
+            - 'fc-koa2-helper.js'
+            - 'controllers/users.c.js'
+
+
+api-gateway:
+  endpoint: 'http://apigateway.cn-shanghai.aliyuncs.com'
+  groups:
+    - name: 'demo'
+      description: 'user api'
+      apis:
+        - name: 'list_users'
+          method: 'GET'
+          path: '/users'
+          timeout: 30
+          description: 'list users'
+          function: 'cn-shanghai/demo/users'
+          resultType: 'PASSTHROUGH'
+          body_format: 'FORM'
+          parameters:
+            - name: 'status'
+            - name: 'marker'
+            - name: 'limit'
+        - name: 'get_user'
+          method: 'GET'
+          path: '/users/[userId]'
+          timeout: 30
+          description: 'get user'
+          function: 'cn-shanghai/demo/users'
+          resultType: 'PASSTHROUGH'
+          body_format: 'FORM'
+          parameters:
+            - name: 'userId'
+              location: 'PATH'
+        - name: 'update_user'
+          method: 'PUT'
+          path: '/users/[userId]'
+          timeout: 30
+          description: 'update user'
+          function: 'cn-shanghai/demo/users'
+          resultType: 'PASSTHROUGH'
+          body_format: 'FORM'
+          parameters:
+            - name: 'name'
+              location: 'Body'
+            - name: 'status'
+              location: 'Body'
+            - name: 'description'
+              location: 'Body'
+            - name: 'userId'
+              location: 'PATH'
+        - name: 'delete_user'
+          method: 'DELETE'
+          path: '/users/[userId]'
+          timeout: 30
+          description: 'delete user'
+          function: 'cn-shanghai/demo/users'
+          resultType: 'PASSTHROUGH'
+          body_format: 'FORM'
+          parameters:
+            - name: 'userId'
+              location: 'PATH'
