@@ -1,6 +1,6 @@
 {
   "name": "fc-koa2-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "函数计算 & API 网关辅助库",
   "main": "index.js",
   "scripts": {
@@ -21,5 +21,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aliyun/fc-koa2-helper.git"
-  },
+  }
 }

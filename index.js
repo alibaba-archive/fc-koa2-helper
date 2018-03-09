@@ -158,9 +158,9 @@ exports.hook = function(handler) {
       await handler(ctx)
     } catch (e) {
       try{
-        console.log(`handler Error: ${e.stack||e}`)
+        console.log(`handler Error: ${JSON.stringify(e.stack||e)}`)
       }catch(e2){
-        console.log(`handler Error: ${e.message}`)
+        console.log(`handler Error: ${JSON.stringify(e.message)}`)
       }
 
       ctx.status = e.status || 500;
@@ -206,11 +206,11 @@ exports['handler'] = async function(event, context, callback) {
           await rt.fn(ctx);
         } catch (e) {
           try{
-            console.log(`handler Error: ${e.stack||e}`)
+            console.log(`handler Error: ${JSON.stringify(e.stack||e)}`)
           }catch(e2){
-            console.log(`handler Error: ${e.message}`)
+            console.log(`handler Error: ${JSON.stringify(e.message)}`)
           }
-        
+
 
           ctx.status = e.status || 500;
           ctx.body = {
